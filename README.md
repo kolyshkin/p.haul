@@ -1,35 +1,34 @@
 p.haul
 ======
 
-Process HAULer -- a tool to live-migrate containers and processes
+Process HAULer — a tool to live-migrate containers and processes
 
-The live-migration idea is quite simple. To live migrate a task
-one needs to
+The live migration idea is quite simple. To live migrate a task
+from one host to another, one needs to:
 
-* stop it and save its state into image file(s)
-* make images available on the remote host
-* recreate task on it from the images
+1. freeze it and dump its state into image files
+2. make these image files available on the destination host
+3. recreate the task from the images
 
-This is what p.haul does. It heavily uses CRIU (http://criu.org)
-to do state dump and restore. Task's stopped time is decreased
-using the CRIU's pre-dump action.
+This is essentially what p.haul does. It heavily uses [CRIU](http://criu.org)
+to perform tasks' state dump and restore (steps 1 and 3 above).
+Tasks' frozen time is optimized using the CRIU's pre-dump action.
 
 Get p.haul ready
-=======
+================
 
-1. Install criu or put criu binary location to $PATH.
+1. Install criu or put criu binary location to `$PATH`.
 
-2. Install protobuf-compiler and python-protobuf packages.
+2. Install `protobuf-compiler` and `protobuf-python` packages.
 
-3. Install p.haul by running
-	$ python setup.py install
-   or just use it without installing.
+3. Install p.haul by running ```$ python setup.py install```
+or just use it without installing.
 
-For more information read the P.Haul-related pages on the CRIU
-wiki (http://criu.org/Category:P.Haul).
+For more information, see P.Haul pages on the CRIU
+wiki, http://criu.org/Category:P.Haul.
 
-BUGs
-======
+Bugs
+====
 
-All BUGs are to be reported on the criu@openvz.org mailing list.
-To [un]subscribe goto http://lists.openvz.org/mailman/listinfo/criu)
+All bugs are to be reported on the criu@openvz.org mailing list.
+To [un]subscribe, see http://lists.openvz.org/mailman/listinfo/criu
